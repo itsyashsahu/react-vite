@@ -1,7 +1,6 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { getCharacter, getCharacters } from "./api";
-import { CharacterData } from "@/App";
-import { queryClient } from "@/main";
+import { CharacterData, queryClient } from "@/App";
 import { Character } from "@/types/Character";
 import { AxiosPaginatedResponse, AxiosResponse } from "@/types/AxiosResponse";
 
@@ -17,11 +16,13 @@ export function useCharacters(data:CharacterData) {
             }
             return lastPage.data.info.currentPage + 1;
         },
-        getPreviousPageParam: (_, __, firstPageParam) => {
-            if (firstPageParam <= 1) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        getPreviousPageParam: (lastPage, allPages, firstPageParam) => {
+            console.log("🚀 ~ useCharacters ~ lastPage.data.info.currentPage:", lastPage.data.info.currentPage)
+            if (lastPage.data.info.currentPage <= 1) {
                 return undefined;
             }
-            return firstPageParam - 1;
+            return lastPage.data.info.currentPage - 1;
         },
     });
 }
@@ -50,5 +51,13 @@ export function useCharacter(id:number|null){
                 return response
             }
         },
+    })
+}
+
+export function usePaginatedCharacters(data:CharacterData){
+    return useQuery({
+        queryKey: ["PaginatedCharacters", data.page, data.pageSize],
+        queryFn: () => getCharacters(data.page,data.pageSize),
+        placeholderData: keepPreviousData,
     })
 }

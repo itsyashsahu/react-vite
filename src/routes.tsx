@@ -1,10 +1,15 @@
 import { RouteObject } from "react-router-dom"
-import App from "./App"
+import Dashboard from "./pages/Dashboard"
+import Gallery from "./pages/Gallery"
 
 const routes:RouteObject[] = [
     {
         path: "/",
-        element: (<App />),
+        element: (<Dashboard />),
+    },
+    {
+        path: "/gallery",
+        element: (<Gallery />),
     }
 ]
 export default routes

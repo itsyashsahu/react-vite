@@ -1,44 +1,27 @@
-import { Fragment } from 'react/jsx-runtime'
-import { Button } from './components/ui/button'
-import { useCharacter, useCharacters } from './services/queries'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import routes from './routes'
 
 export interface CharacterData {
   // Define the structure of your character data here
   pageSize:number
+  page:number
 }
 
+const queryClient = new QueryClient()
+const router = createBrowserRouter(routes);
+
 function App() {
-  // const characherData:CharacterData = {pageSize:2}
-  // const charactes = useCharacters(characherData)
-
-  const characterData = useCharacter(3)
-  console.log("🚀 ~ App ~ characterData:", characterData)
-
   return (
     <>
-      <div className='m-5'>
-      <Button onClick={()=>{ }} >MY Button</Button>
-      {/* <Button onClick={()=>{charactes.fetchNextPage({})}} >MY Button</Button> */}
-      {/* {
-        charactes.data?.pages.map((groupRes,index)=>{
-          return (
-            <Fragment key={index} >
-              {
-                groupRes?.data.results.map((ch,index)=>{
-                  return (
-                    <Fragment key={index}>
-                    <div>id: {ch.id} ==  name: {ch.name} </div>
-                    </Fragment>
-                  )
-                })
-              }
-            </Fragment>
-          )
-        })
-      } */}
+    <QueryClientProvider client={queryClient}>
+      <div className="flex flex-col w-full min-h-screen bg-background bg-pattern">
+        <RouterProvider router={router} />
       </div>
+    </QueryClientProvider>
     </>
   )
 }
 
+export { queryClient };
 export default App
