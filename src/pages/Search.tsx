@@ -9,9 +9,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { getAllSearchParams } from "@/lib/utils";
 import { InfinitePageData, useInfiniteCharacters } from "@/services/queries";
+import { PackageOpen } from "lucide-react";
 import { Fragment, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -98,11 +100,11 @@ const Search = () => {
                       setSearchTerm(e.target.value);
                       setSearchParams({ s: e.target.value });
                     }}
-                    className="w-[300px] px-0 mt-4 bg-transparent text-white font-bold tracking-wider border-none   hover:border-white"
+                    className="w-[300px] px-0 mt-4 sm:mt-0 bg-transparent text-white font-bold tracking-wider border-none   hover:border-white"
                   />
                 </div>
               </div>
-              <div className="flex-1 w-full h-full">
+              <div className="">
                 <Button
                   asChild
                   variant="outline"
@@ -175,6 +177,22 @@ const Search = () => {
             }
             
           </div>
+            {
+              (infiniteQuery?.data?.pages.length == 1 && 
+              infiniteQuery?.data?.pages[0].data.info.totalRecords == 0) ? 
+              (
+                <Card className="p-4 bg-transparent">
+                  <CardContent className="grid mt-6 place-items-center">
+                    <PackageOpen className="w-16 h-16 text-white stroke-1"/>
+                  </CardContent>
+                  <CardFooter className="text-white">
+                  No Records Found
+
+                  </CardFooter>
+                </Card>
+              )
+              :null 
+            }
           {
               infiniteQuery.hasNextPage ?
               <div className="grid w-full py-5 mb-10 place-items-center">
