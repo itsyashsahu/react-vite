@@ -2,7 +2,7 @@ import CharacterCard from "@/components/CharacterCard";
 import Header from "@/components/Header";
 import { PaginationDemo, PaginationType } from "@/components/Pagniation";
 import { usePaginatedCharacters } from "@/services/queries";
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Gallery = () => {

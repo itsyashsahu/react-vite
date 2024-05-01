@@ -27,7 +27,7 @@ export function useInfiniteCharacters(data:InfinitePageData) {
             return lastPage.data.info.currentPage + 1;
         },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        getPreviousPageParam: (lastPage, allPages, firstPageParam) => {
+        getPreviousPageParam: (lastPage, _, __) => {
             if (lastPage.data.info.currentPage > 1) {
                 return undefined;
             }

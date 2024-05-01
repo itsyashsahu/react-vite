@@ -5,7 +5,8 @@ import { Search } from "lucide-react";
 
 const HeroSection = () => {
     const navigate = useNavigate()
-    const handleSubmit =(e) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleSubmit =(e:any) => {
         e.preventDefault()
         const formData = new FormData(e.target);
         const searchTerm = formData.get("searchTerm")
