@@ -113,7 +113,7 @@ const Search = () => {
               </div>
             </div>
             <AccordionContent>
-              <div className="grid w-1/2 grid-cols-1 gap-4 py-4 md:grid-cols-2">
+              <div className="grid grid-cols-2 gap-4 px-4 py-4 sm:w-1/2 w-ful md:grid-cols-2">
                 <div className="flex items-center flex-row text-xl mb-4 font-bold no-underline text-muted-foreground leading-tight tracking-tighter md:text-2xl lg:leading-[1.1]">
                   <div className="flex items-center h-full mr-4">Status :</div>
                 </div>
