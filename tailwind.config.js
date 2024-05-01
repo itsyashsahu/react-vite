@@ -15,6 +15,10 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+      spacing: {
+        '100': '28rem',
+        '128': '32rem',
+      }
     },
     extend: {
       colors: {
@@ -73,6 +77,10 @@ module.exports = {
       },
       backgroundImage:{
         pattern: "var(--background-pattern-1)"
+      },
+      width: {
+        '100': '28rem',
+        '128': '32rem',
       }
     },
   },

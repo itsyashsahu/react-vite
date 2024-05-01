@@ -20,7 +20,6 @@ const Gallery = () => {
   });
 
   const handlePageSizeChange = (newPageSize: number) => {
-    console.log("🚀 ~ consthandlePageSizeChange ~ pageNumber:", newPageSize);
     setPageSize(newPageSize)
     navigate(`/gallery?page=${page}&pageSize=${newPageSize}`)
   };
@@ -90,6 +89,7 @@ const Gallery = () => {
               return (
                 <Fragment key={index}>
                   <CharacterCard
+                    id={ch.id}
                     url={ch.image}
                     name={ch.name}
                     species={ch.species}
