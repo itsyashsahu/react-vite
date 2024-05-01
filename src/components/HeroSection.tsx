@@ -40,6 +40,11 @@ const HeroSection = () => {
                   className="w-full text-lg shadow-none appearance-none bg-background text-muted-foreground p-7 pl-14"
                 />
               </div>
+              <div className="flex items-center justify-center w-full py-8 sm:hidden">
+                <Button>
+                  Search
+                </Button>
+              </div>
             </form>
           </div>
         </div>

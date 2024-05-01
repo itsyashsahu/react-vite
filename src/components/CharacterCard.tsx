@@ -28,7 +28,7 @@ const CharacterCard = ({ id, url, name, species }: Props) => {
             <p className="mb-3 font-normal text-muted-foreground">{species}</p>
           </div>
         </a> */}
-      <Card className="p-0 cursor-pointer w-96" onClick={()=>{navigate(`/character/${id}`)}}>
+      <Card className="p-0 cursor-pointer w-80 sm:96" onClick={()=>{navigate(`/character/${id}`)}}>
         <CardContent className="flex flex-col items-center p-0 border rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 bg-background">
           <img
             className="object-cover w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-s-lg"

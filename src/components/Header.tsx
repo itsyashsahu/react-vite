@@ -17,7 +17,7 @@ const Header = () => {
               <span className="sr-only">Cartoonify</span>
             </Link>
           </nav>
-          <nav className="flex flex-row gap-6 text-lg font-medium md:items-center md:gap-5 md:text-sm lg:gap-6">
+          <nav className="flex-row hidden gap-6 text-lg font-medium sm:flex md:items-center md:gap-5 md:text-sm lg:gap-6">
             <Link
               to="/"
               className="underline transition-colors underline-offset-2 text-muted-foreground hover:text-foreground"
