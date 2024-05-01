@@ -1,5 +1,8 @@
 import CharacterCard from "@/components/CharacterCard";
+import ErrorCard from "@/components/ErrorCard";
 import Header from "@/components/Header";
+import LoadingCard from "@/components/LoadingCard";
+import NotFoundCard from "@/components/NotFoundCard";
 import { PaginationDemo, PaginationType } from "@/components/Pagniation";
 import { usePaginatedCharacters } from "@/services/queries";
 import { Fragment, useState } from "react";
@@ -14,14 +17,15 @@ const Gallery = () => {
   const page = currentPageParam ? parseInt(currentPageParam) : 1;
   const pageSizeQuery = pageSizeParam ? parseInt(pageSizeParam) : 4;
   const [pageSize, setPageSize] = useState(pageSizeQuery || 4);
-  const { isPending, data, error, isError } = usePaginatedCharacters({
-    page,
-    pageSize,
-  });
+  const { isPending, data, error, isError} =
+    usePaginatedCharacters({
+      page,
+      pageSize,
+    });
 
   const handlePageSizeChange = (newPageSize: number) => {
-    setPageSize(newPageSize)
-    navigate(`/gallery?page=${page}&pageSize=${newPageSize}`)
+    setPageSize(newPageSize);
+    navigate(`/gallery?page=${page}&pageSize=${newPageSize}`);
   };
   const characters = data?.data?.results;
   const totalPages = Number(data?.data?.info?.totalPages);
@@ -45,13 +49,6 @@ const Gallery = () => {
     navigate(`/gallery?page=${pageNumber}&pageSize=${pageSize}`);
   };
 
-  if (isPending)
-    return (
-      <div className="flex flex-col items-center justify-center w-full mt-8 gap-7">
-        Loading...
-      </div>
-    );
-
   if (isError)
     return (
       <div className="flex flex-col items-center justify-center w-full mt-8 text-red-500 gap-7">
@@ -73,7 +70,7 @@ const Gallery = () => {
 
   return (
     <>
-    <Header/>
+      <Header />
       <section
         id="gallery"
         className="flex flex-col w-full min-h-screen border border-black"
@@ -99,7 +96,13 @@ const Gallery = () => {
             })}
           </div>
         </div>
-        <PaginationDemo pagination={pagination} />
+        {(characters && characters.length!=0) ? <PaginationDemo pagination={pagination} /> : null}
+        <div className="grid px-6 sm:px-12 place-items-center">
+
+        {isPending ? <LoadingCard/>:null}
+        {isError ? <ErrorCard  errorMessage={error?.['message'] || 'something went wrong'} />:null}
+        {(!isPending && characters?.length==0) ? <NotFoundCard/>:null}
+        </div>
       </section>
     </>
   );

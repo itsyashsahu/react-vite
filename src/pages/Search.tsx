@@ -1,5 +1,7 @@
 import CharacterCard from "@/components/CharacterCard";
 import Header from "@/components/Header";
+import LoadingCard from "@/components/LoadingCard";
+import NotFoundCard from "@/components/NotFoundCard";
 import { SelectDemo } from "@/components/Select";
 import { CustomInput } from "@/components/ui/CustomInput";
 import {
@@ -9,11 +11,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { getAllSearchParams } from "@/lib/utils";
 import { InfinitePageData, useInfiniteCharacters } from "@/services/queries";
-import { PackageOpen } from "lucide-react";
 import { Fragment, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -158,48 +158,41 @@ const Search = () => {
         </Accordion>
         <div className="grid px-6 sm:px-12 place-items-center">
           <div className="grid grid-cols-1 gap-16 py-10 pb-12 md:grid-cols-2">
-            {
-              infiniteQuery?.data?.pages.map((groupRes,index)=>{
-                return (
-                  <Fragment key={index} >
-                    {
-                      groupRes?.data.results.map((ch,index)=>{
-                        return (
-                          <Fragment key={index}>
-                          <CharacterCard id={ch.id} url={ch.image} name={ch.name} species={ch.species}  />
-                          </Fragment>
-                        )
-                      })
-                    }
-                  </Fragment>
-                )
-              })
-            }
-            
+            {infiniteQuery?.data?.pages.map((groupRes, index) => {
+              return (
+                <Fragment key={index}>
+                  {groupRes?.data.results.map((ch, index) => {
+                    return (
+                      <Fragment key={index}>
+                        <CharacterCard
+                          id={ch.id}
+                          url={ch.image}
+                          name={ch.name}
+                          species={ch.species}
+                        />
+                      </Fragment>
+                    );
+                  })}
+                </Fragment>
+              );
+            })}
           </div>
-            {
-              (infiniteQuery?.data?.pages.length == 1 && 
-              infiniteQuery?.data?.pages[0].data.info.totalRecords == 0) ? 
-              (
-                <Card className="p-4 bg-transparent">
-                  <CardContent className="grid mt-6 place-items-center">
-                    <PackageOpen className="w-16 h-16 text-white stroke-1"/>
-                  </CardContent>
-                  <CardFooter className="text-white">
-                  No Records Found
-
-                  </CardFooter>
-                </Card>
-              )
-              :null 
-            }
-          {
-              infiniteQuery.hasNextPage ?
-              <div className="grid w-full py-5 mb-10 place-items-center">
-                <Button onClick={()=>{infiniteQuery.fetchNextPage()}} >Load More</Button>
-              </div>
-                :null
-            }
+          {infiniteQuery?.data?.pages.length == 1 &&
+          infiniteQuery?.data?.pages[0].data.info.totalRecords == 0 ? (
+            <NotFoundCard />
+          ) : null}
+          {infiniteQuery.isLoading ? <LoadingCard /> : null}
+          {infiniteQuery.hasNextPage ? (
+            <div className="grid w-full py-5 mb-10 place-items-center">
+              <Button
+                onClick={() => {
+                  infiniteQuery.fetchNextPage();
+                }}
+              >
+                Load More
+              </Button>
+            </div>
+          ) : null}
         </div>
       </section>
     </>
