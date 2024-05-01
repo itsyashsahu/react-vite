@@ -21,21 +21,17 @@ export function useInfiniteCharacters(data:InfinitePageData) {
         initialPageParam: 1,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         getNextPageParam: (lastPage, _, __) => {
-            console.log("🚀 ~ useInfiniteCharacters ~ lastPage:", lastPage)
-            // if(lastPage.data.info.currentPage >= lastPage.data.info.totalPages){
-            //     return undefined
-            // }
-            // return lastPage.data.info.currentPage + 1;
-
-            return undefined
+            if(lastPage.data.info.currentPage >= lastPage.data.info.totalPages){
+                return undefined
+            }
+            return lastPage.data.info.currentPage + 1;
         },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         getPreviousPageParam: (lastPage, allPages, firstPageParam) => {
-            // if (lastPage.data.info.currentPage <= 1) {
-            //     return undefined;
-            // }
-            // return lastPage.data.info.currentPage - 1;
-            return undefined;
+            if (lastPage.data.info.currentPage > 1) {
+                return undefined;
+            }
+            return lastPage.data.info.currentPage - 1;
         },
     });
 }
