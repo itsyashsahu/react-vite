@@ -190,25 +190,33 @@ const Search = () => {
           {infiniteQuery.isLoading ? <LoadingCard /> : null}
 
           <div className="grid w-full py-5 mb-10 place-items-center">
-            {infiniteQuery.isFetchingNextPage ? (
-              <Button disabled={true}>Loading More...</Button>
-            ) : infiniteQuery.hasNextPage ? (
-              <Button
-                onClick={() => {
-                  infiniteQuery.fetchNextPage();
-                }}
-              >
-                Load More
-              </Button>
-            ) : (
-              <Button
-                onClick={() => {
-                  infiniteQuery.fetchNextPage();
-                }}
-              >
-                {" "}
-                Nothing more to load
-              </Button>
+            {!(
+              infiniteQuery.isError || infiniteQuery.isLoading ||
+              (infiniteQuery?.data?.pages.length == 1 &&
+                infiniteQuery?.data?.pages[0].data.info.totalRecords == 0)
+            ) && (
+              <>
+                {infiniteQuery.isFetchingNextPage ? (
+                  <Button disabled={true}>Loading More...</Button>
+                ) : infiniteQuery.hasNextPage ? (
+                  <Button
+                    onClick={() => {
+                      infiniteQuery.fetchNextPage();
+                    }}
+                  >
+                    Load More
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      infiniteQuery.fetchNextPage();
+                    }}
+                  >
+                    {" "}
+                    Nothing more to load
+                  </Button>
+                )}
+              </>
             )}
           </div>
         </div>
