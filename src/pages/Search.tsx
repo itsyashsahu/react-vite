@@ -86,9 +86,9 @@ const Search = () => {
 
   return (
     <>
-    <Helmet>
-          <title>Cartoonify | Search</title>
-          <link rel="canonical" href={`${Config.FRONTEND_URL}/search`} />
+      <Helmet>
+        <title>Cartoonify | Search</title>
+        <link rel="canonical" href={`${Config.FRONTEND_URL}/search`} />
       </Helmet>
       <Header />
       <section id="gallery" className="flex flex-col w-full">
@@ -106,7 +106,7 @@ const Search = () => {
                       setSearchTerm(e.target.value);
                       setSearchParams({ s: e.target.value });
                     }}
-                    className="w-[300px] px-0 mt-4 sm:mt-0 bg-transparent text-white font-bold tracking-wider border-none   hover:border-white"
+                    className="w-[300px] px-0 mt-4 sm:mt-0 bg-transparent text-white border-b font-bold tracking-wider border-white"
                   />
                 </div>
               </div>
@@ -188,8 +188,11 @@ const Search = () => {
             <NotFoundCard />
           ) : null}
           {infiniteQuery.isLoading ? <LoadingCard /> : null}
-          {infiniteQuery.hasNextPage ? (
-            <div className="grid w-full py-5 mb-10 place-items-center">
+
+          <div className="grid w-full py-5 mb-10 place-items-center">
+            {infiniteQuery.isFetchingNextPage ? (
+              <Button disabled={true}>Loading More...</Button>
+            ) : infiniteQuery.hasNextPage ? (
               <Button
                 onClick={() => {
                   infiniteQuery.fetchNextPage();
@@ -197,8 +200,17 @@ const Search = () => {
               >
                 Load More
               </Button>
-            </div>
-          ) : null}
+            ) : (
+              <Button
+                onClick={() => {
+                  infiniteQuery.fetchNextPage();
+                }}
+              >
+                {" "}
+                Nothing more to load
+              </Button>
+            )}
+          </div>
         </div>
       </section>
     </>
