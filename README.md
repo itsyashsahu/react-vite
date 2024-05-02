@@ -59,10 +59,10 @@ You can change it by adding the .env files the .env.example is present to help y
 
 
 
-<a href="https://react-vite-ten-beta.vercel.app/" target="_blank">Cartoonify</a>
+<a href="https://cartoonify-itsyashsahus-projects.vercel.app/" target="_blank">Cartoonify</a>
 
 ```bash
-https://react-vite-ten-beta.vercel.app/
+https://cartoonify-itsyashsahus-projects.vercel.app/
 ```
 
 
