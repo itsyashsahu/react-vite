@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import LoadingCard, { LoadingCardFallback } from "./components/LoadingCard";
+import { LoadingCardFallback } from "./components/LoadingCard";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Gallery = lazy(() => import("./pages/Gallery"));
