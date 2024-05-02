@@ -12,9 +12,11 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Config from "@/config";
 import { getAllSearchParams } from "@/lib/utils";
 import { InfinitePageData, useInfiniteCharacters } from "@/services/queries";
 import { Fragment, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useSearchParams } from "react-router-dom";
 
 const Search = () => {
@@ -84,6 +86,10 @@ const Search = () => {
 
   return (
     <>
+    <Helmet>
+          <title>Cartoonify | Search</title>
+          <link rel="canonical" href={`${Config.FRONTEND_URL}/search`} />
+      </Helmet>
       <Header />
       <section id="gallery" className="flex flex-col w-full">
         <Accordion type="single" collapsible className="w-full">

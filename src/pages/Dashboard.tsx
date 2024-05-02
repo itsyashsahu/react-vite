@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Dashboard = () => {
   return (

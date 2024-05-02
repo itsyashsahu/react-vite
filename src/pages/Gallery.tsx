@@ -4,8 +4,10 @@ import Header from "@/components/Header";
 import LoadingCard from "@/components/LoadingCard";
 import NotFoundCard from "@/components/NotFoundCard";
 import { PaginationDemo, PaginationType } from "@/components/Pagniation";
+import Config from "@/config";
 import { usePaginatedCharacters } from "@/services/queries";
 import { Fragment, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Gallery = () => {
@@ -63,6 +65,11 @@ const Gallery = () => {
 
   return (
     <>
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Cartoonify | Gallery</title>
+          <link rel="canonical" href={`${Config.FRONTEND_URL}/gallery`} />
+      </Helmet>
       <Header />
       <section
         id="gallery"

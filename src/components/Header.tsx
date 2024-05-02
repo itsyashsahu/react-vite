@@ -12,7 +12,7 @@ const Header = () => {
               to="/"
               className="flex items-center gap-2 text-lg font-semibold text-muted-foreground md:text-base"
             >
-              <PawPrint className="w-6 h-6" />
+              <PawPrint className="w-6 h-6 fill-[#12212d]" />
               <span className="font-bold">Cartoonify</span>
               <span className="sr-only">Cartoonify</span>
             </Link>
