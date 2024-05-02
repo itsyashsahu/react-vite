@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { PackageOpen } from "lucide-react";
 
