@@ -49,13 +49,6 @@ const Gallery = () => {
     navigate(`/gallery?page=${pageNumber}&pageSize=${pageSize}`);
   };
 
-  if (isError)
-    return (
-      <div className="flex flex-col items-center justify-center w-full mt-8 text-red-500 gap-7">
-        {error.message}
-      </div>
-    );
-
   const pagination: PaginationType = {
     hasPreviousPage,
     hasNextPage,
