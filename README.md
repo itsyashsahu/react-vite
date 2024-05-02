@@ -1,30 +1,68 @@
-# React + TypeScript + Vite
+# Cartoonify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cartoonify is a web application that allows users to explore and discover their favorite cartoons. It utilizes modern web technologies to provide a seamless and engaging user experience.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite**: A blazing fast build tool for modern web development.
+- **React**: A JavaScript library for building user interfaces.
+- **React Query**: A powerful data fetching library for React.
+- **React Helmet**: A component for managing document head metadata in React.
+- **Tailwind CSS**: A utility-first CSS framework for quickly building custom designs.
+- **Shadcn UI**: A UI library for React components with customizable themes and styles.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Infinite Scrolling**: Implemented using React Query for smooth and efficient data fetching.
+- **SEO Optimization**: Utilizes React Helmet to manage SEO metadata for improved search engine visibility.
+- **Responsive Design**: Built with Tailwind CSS and Shadcn UI to ensure a seamless experience across devices of all sizes.
 
-- Configure the top-level `parserOptions` property like this:
+## Setup Guide
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Prerequisites
+
+- Node.js installed on your machine (https://nodejs.org/)
+- Yarn package manager (https://yarnpkg.com/)
+- Git (https://git-scm.com/) (optional)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/itsyashsahu/react-vite.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Or download the repository manually and extract it.
+
+2. Navigate to the project directory:
+``` bash
+cd react-vite
+```
+
+3. Install dependencies using Yarn:
+```
+yarn install
+```
+
+
+## Running the Server Locally
+
+1. Start the development server:
+```
+yarn dev
+```
+
+This command will compile TypeScript files and start the server using nodemon, which will automatically restart the server when changes are detected.
+
+You can change it by adding the .env files the .env.example is present to help you setup environment variables
+
+
+
+<a href="https://react-vite-ten-beta.vercel.app/" target="_blank">Cartoonify</a>
+
+```bash
+https://react-vite-ten-beta.vercel.app/
+```
+
+
