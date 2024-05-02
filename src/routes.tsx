@@ -1,25 +1,39 @@
 import { RouteObject } from "react-router-dom"
-import Dashboard from "./pages/Dashboard"
-import Gallery from "./pages/Gallery"
-import Character from "./pages/Character"
-import Search from "./pages/Search"
+import { Suspense, lazy } from 'react';
 
-const routes:RouteObject[] = [
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const Character = lazy(() => import('./pages/Character'));
+const Search = lazy(() => import('./pages/Search'));
+
+const routes: RouteObject[] = [
     {
         path: "/",
         element: (<Dashboard />),
     },
     {
         path: "/gallery",
-        element: (<Gallery />),
+        element: (
+            <Suspense fallback={<div>Loading...</div>}>
+                <Gallery />
+            </Suspense>
+        ),
     },
     {
         path: "/character/:id",
-        element: (<Character />),
+        element: (
+            <Suspense fallback={<div>Loading...</div>}>
+                <Character />
+            </Suspense>
+        ),
     },
     {
         path: "/search",
-        element: (<Search />),
+        element: (
+            <Suspense fallback={<div>Loading...</div>}>
+                <Search />
+            </Suspense>
+        ),
     }
 ]
-export default routes
+export default routes;
